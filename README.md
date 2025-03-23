@@ -1,1 +1,3 @@
 # AdataPyService
+
+这是一个基于Adata包构建的Python服务
