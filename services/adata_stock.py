@@ -21,8 +21,20 @@ class AdataStockService:
 
     @staticmethod
     async def get_market_index(index_code: str = '000001', start_date='2020-01-01', k_type: int = 1):
-        result = adata.stock.market.get_market_index('399300','2025-01-01')
-        print(result)
-        result = adata.stock.market.get_market_index('399852', '2025-01-01')
-        print(result)
+        result = adata.stock.market.get_market_index(index_code, start_date, k_type)
+        return result.astype(str).to_dict(orient='records')
+
+    @staticmethod
+    async def get_market_index_current(index_code: str = '000001'):
+        result = adata.stock.market.get_market_index_current(index_code)
+        return result.astype(str).to_dict(orient='records')
+
+    @staticmethod
+    async def get_market_min(stock_code: str = '000001'):
+        result = adata.stock.market.get_market_min(stock_code)
+        return result.astype(str).to_dict(orient='records')
+
+    @staticmethod
+    async def list_market_current(code_list=None):
+        result = adata.stock.market.list_market_current(code_list)
         return result.astype(str).to_dict(orient='records')
