@@ -18,9 +18,9 @@ USER myuser
 
 ENV PYTHONUNBUFFERED=1
 
-EXPOSE 8000
+EXPOSE 5000
 
-CMD ["python", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000"]
 
 HEALTHCHECK --interval=30s --timeout=10s \
-  CMD curl -f http://localhost:8000 || exit 1
+  CMD curl -f http://localhost:5000 || exit 1
