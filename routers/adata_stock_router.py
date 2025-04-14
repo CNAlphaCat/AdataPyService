@@ -18,14 +18,14 @@ async def get_stock_info_concept_constituent_ths():
     return AdataPyServiceResponseModel(status_code=200, content=info_all_code)
 
 
-@router.get("/market", summary="获取单只股票的行情信息-日、周、月 k线")
+@router.post("/market", summary="获取单只股票的行情信息-日、周、月 k线")
 async def get_stock_market(request: StockMarketRequest = Body(...)):
     stock_market = await AdataStockService.get_stock_market(request.stock_code, request.start_date, request.end_date,
                                                             request.k_type, request.adjust_type)
     return AdataPyServiceResponseModel(status_code=200, content=stock_market)
 
 
-@router.get("/market/marketindex", summary="获取指数的行情信息-日、周、月 k线")
+@router.post("/market/marketindex", summary="获取指数的行情信息-日、周、月 k线")
 async def get_market_index(request: MarketIndexRequest = Body(...)):
     market_index = await AdataStockService.get_market_index(request.index_code, request.start_date, request.k_type)
     return AdataPyServiceResponseModel(status_code=200, content=market_index)
@@ -36,13 +36,13 @@ async def get_market_index(index_code: str):
     return AdataPyServiceResponseModel(status_code=200, content=market_index_current)
 
 
-@router.get("/market/marketmin", summary="获取单个股票的今日分时行情")
+@router.post("/market/marketmin", summary="获取单个股票的今日分时行情")
 async def get_market_min(request: MarketMinRequest = Body(...)):
     market_min = await AdataStockService.get_market_min(request.stock_code)
     return AdataPyServiceResponseModel(status_code=200, content=market_min)
 
 
-@router.get("/market/marketcurrent", summary="获取多个股票最新行情信息")
+@router.post("/market/marketcurrent", summary="获取多个股票最新行情信息")
 async def get_market_current(request: ListMarketCurrentRequest = Body(...)):
     market_current = await AdataStockService.list_market_current(request.code_list)
     return AdataPyServiceResponseModel(status_code=200, content=market_current)
